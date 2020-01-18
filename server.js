@@ -3,6 +3,7 @@ const passport = require("passport")
 const keys = require("./config/keys")
 const connectDB = require("./config/db")
 const cookieSession = require("cookie-session")
+const path = require("path")
 require("./models/User")
 require("./models/Survey")
 
