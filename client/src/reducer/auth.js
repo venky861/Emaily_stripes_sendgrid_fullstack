@@ -1,13 +1,28 @@
-import { FETCH_USER } from "../actions/types"
+import { FETCH_USER, LOGOUT } from "../actions/types"
 
-const initialState = {}
+const initialState = {
+  token: localStorage.getItem("token"),
+  isAuthenticated: null,
+  loading: true,
+  user: null
+}
 
 export default function(state = initialState, action) {
   const { type, payload } = action
-
+  // console.log(payload)
   switch (type) {
     case FETCH_USER:
-      return { ...state }
+      localStorage.setItem("token", payload.googleId)
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload.credits
+      }
+
+    case LOGOUT:
+      localStorage.removeItem("token")
+      return { ...state, token: null, isAuthenticated: false, loading: false }
 
     default:
       return state

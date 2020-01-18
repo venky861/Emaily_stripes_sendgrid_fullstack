@@ -4,6 +4,8 @@ const keys = require("./config/keys")
 const connectDB = require("./config/db")
 const cookieSession = require("cookie-session")
 require("./models/User")
+require("./models/Survey")
+
 require("./services/passport")
 
 //db
@@ -25,6 +27,10 @@ app.use(passport.session())
 app.use(express.json({ extended: false }))
 
 app.use("/", require("./routes/api/auth"))
+
+app.use("/", require("./routes/api/billingRoute"))
+
+app.use("/", require("./routes/api/surveyRoute"))
 
 // Server static assest
 if (process.env.NODE_ENV === "production") {
