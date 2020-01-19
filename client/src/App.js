@@ -7,6 +7,7 @@ import { connect } from "react-redux"
 import { fetchUser } from "./actions/auth"
 import setAuthToken from "./utils/setAuthToken"
 import SurveyNew from "./components/surveys/SurveyNew"
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
@@ -23,8 +24,16 @@ const App = ({ fetchUser }) => {
         <Header />
         <Switch>
           <Route exact path='/' component={Landing}></Route>
-          <Route exact path='/surveys' component={Dashboard}></Route>
-          <Route exact path='/surveys/new' component={SurveyNew}></Route>
+          <PrivateRoute
+            exact
+            path='/surveys'
+            component={Dashboard}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path='/surveys/new'
+            component={SurveyNew}
+          ></PrivateRoute>
         </Switch>
       </Fragment>
     </Router>

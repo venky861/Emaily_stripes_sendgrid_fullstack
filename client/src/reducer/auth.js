@@ -1,9 +1,9 @@
-import { FETCH_USER, LOGOUT } from "../actions/types"
+import { FETCH_USER, LOGOUT, AUTH_ERROR } from "../actions/types"
 
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: false,
-  loading: true,
+  loading: false,
   user: null
 }
 
@@ -16,11 +16,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: true,
-        loading: false,
+        loading: true,
         user: payload.credits
       }
 
     case LOGOUT:
+    case AUTH_ERROR:
       localStorage.removeItem("token")
       return { ...state, token: null, isAuthenticated: false, loading: false }
 

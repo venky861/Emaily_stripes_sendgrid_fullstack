@@ -3,6 +3,7 @@ const passport = require("passport")
 const keys = require("./config/keys")
 const connectDB = require("./config/db")
 const cookieSession = require("cookie-session")
+const path = require("path")
 
 require("./models/User")
 require("./models/Survey")
@@ -33,12 +34,11 @@ if (process.env.NODE_ENV === "production") {
   //set static folder
 
   app.use(express.static("client/build"))
-  const path = require("path")
+
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   })
 }
-
 
 app.use("/", require("./routes/api/auth"))
 
