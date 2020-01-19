@@ -27,11 +27,6 @@ app.use(passport.session())
 // body parser
 app.use(express.json({ extended: false }))
 
-app.use("/", require("./routes/api/auth"))
-
-app.use("/", require("./routes/api/billingRoute"))
-
-app.use("/", require("./routes/api/surveyRoute"))
 
 // Server static assest
 if (process.env.NODE_ENV === "production") {
@@ -43,6 +38,14 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   })
 }
+
+
+app.use("/", require("./routes/api/auth"))
+
+app.use("/", require("./routes/api/billingRoute"))
+
+app.use("/", require("./routes/api/surveyRoute"))
+
 
 const PORT = process.env.PORT || 5000
 
