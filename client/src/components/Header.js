@@ -6,7 +6,7 @@ import Payments from "./Payments"
 
 const Header = ({ auth, logout, fetchUser }) => {
   const { isAuthenticated, user } = auth
-
+  console.log("user", user)
   const authLinks = (
     <div>
       <ul>
@@ -39,7 +39,11 @@ const Header = ({ auth, logout, fetchUser }) => {
           Emaily
         </a>
 
-        <Fragment>{isAuthenticated ? authLinks : GuestLinks}</Fragment>
+        <Fragment>
+          {isAuthenticated && typeof user != "undefined"
+            ? authLinks
+            : GuestLinks}
+        </Fragment>
       </div>
     </div>
   )
