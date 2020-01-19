@@ -1,4 +1,4 @@
-import { FETCH_USER, LOGOUT, AUTH_ERROR } from "../actions/types"
+import { FETCH_USER, LOGOUT, AUTH_ERROR, GOOGLE } from "../actions/types"
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -19,6 +19,9 @@ export default function(state = initialState, action) {
         loading: true,
         user: payload.credits
       }
+
+    case GOOGLE:
+      return { ...state }
 
     case LOGOUT:
     case AUTH_ERROR:

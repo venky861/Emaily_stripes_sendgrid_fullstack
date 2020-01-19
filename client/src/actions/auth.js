@@ -1,4 +1,4 @@
-import { FETCH_USER, LOGOUT, FETCH_SURVEY, AUTH_ERROR } from "./types"
+import { FETCH_USER, LOGOUT, FETCH_SURVEY, AUTH_ERROR, GOOGLE } from "./types"
 import axios from "axios"
 
 export const fetchUser = () => async dispatch => {
@@ -14,6 +14,13 @@ export const fetchUser = () => async dispatch => {
       type: AUTH_ERROR
     })
   }
+}
+
+export const google = () => async dispatch => {
+  await axios.get("/auth/google")
+  dispatch({
+    type: GOOGLE
+  })
 }
 
 export const logout = () => async dispatch => {

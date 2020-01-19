@@ -1,10 +1,10 @@
 import React, { Fragment } from "react"
 import { connect } from "react-redux"
-import { logout, fetchUser } from "../actions/auth"
+import { logout, fetchUser, google } from "../actions/auth"
 import { Link } from "react-router-dom"
 import Payments from "./Payments"
 
-const Header = ({ auth, logout, fetchUser }) => {
+const Header = ({ auth, logout, fetchUser, google }) => {
   const { isAuthenticated, user } = auth
   console.log("user", user)
   const authLinks = (
@@ -25,7 +25,13 @@ const Header = ({ auth, logout, fetchUser }) => {
     <div>
       <ul>
         <li>
-          <a href='/auth/google' onClick={fetchUser}>
+          <a
+            href='/auth/google'
+            onClick={() => {
+              fetchUser()
+              google()
+            }}
+          >
             Login with Google
           </a>
         </li>
@@ -53,4 +59,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { logout, fetchUser })(Header)
+export default connect(mapStateToProps, { logout, fetchUser, google })(Header)
