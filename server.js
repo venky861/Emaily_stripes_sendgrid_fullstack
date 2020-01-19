@@ -28,24 +28,11 @@ app.use(passport.session())
 // body parser
 app.use(express.json({ extended: false }))
 
-
-// Server static assest
-if (process.env.NODE_ENV === "production") {
-  //set static folder
-
-  app.use(express.static("client/build"))
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
-  })
-}
-
 app.use("/", require("./routes/api/auth"))
 
 app.use("/", require("./routes/api/billingRoute"))
 
 app.use("/", require("./routes/api/surveyRoute"))
-
 
 const PORT = process.env.PORT || 5000
 
