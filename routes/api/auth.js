@@ -3,7 +3,7 @@ const passport = require("passport")
 
 const router = express.Router()
 
-router.get("/", (req, res) => {
+router.get("/server", (req, res) => {
   res.send("hey there")
 })
 
